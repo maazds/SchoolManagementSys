@@ -34,6 +34,7 @@
         'views/course_view.xml',
         'views/subject_view.xml',
         'views/room_view.xml',
+        'views/student_fee.xml'
 
 
 

@@ -1,0 +1,100 @@
+<odoo>
+    <data>
+        <template id="student_fee_voucher" >
+            <t t-call="web.html_container" style="border:2px solid black">
+                <t t-foreach="docs" t-as="o">
+                    <div class="page">
+                        <div>
+                            <span>
+                                <b>Name :</b>
+                                <t t-esc="o.StudentFirstName"/>
+                                <t t-esc="o.StudentLastName"/>
+                            </span>
+                            <br/>
+                            <span>
+                                <b>Regd. No. :</b>
+                                <t t-esc="o.StudentID"/>
+                            </span>
+                            <br/>
+                            <span>
+                                <b>DOB :</b>
+                                <t t-esc="o.StudentDateOfBirth"/>
+                            </span>
+                            <br/>
+                            <span>
+                                <b>Department :</b>
+                                <t t-esc="o.StudentCourse_ID.CourseID"/>
+                            </span>
+                            <br/>
+                            <span>
+                                <b>Semester:</b>
+                                <t t-esc="dict(docs.fields_get(allfields=['StudentSemester'])['StudentSemester']['selection'])[docs.StudentSemester]"/>
+                            </span>
+                            <br/>
+                            <span>
+                                <b>Gender :</b>
+                                <t t-esc="dict(docs.fields_get(allfields=['StudentGender'])['StudentGender']['selection'])[docs.StudentGender]"/>
+                            </span>
+                            <br/>
+                            <span>
+                                <table border="1" style="border-collapse:collapse;">
+                                    <tr>
+                                        <th style="padding:10px;">Description</th>
+                                        <th style="padding:10px;">Amount</th>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:5px;">Tuition Fee</td>
+                                        <td style="padding:5px;">6000</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:5px;">Library Fee</td>
+                                        <td style="padding:5px;">5000</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:5px;">Transport Fee</td>
+                                        <td style="padding:5px;">10000</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:5px;">Examination Fee</td>
+                                        <td style="padding:5px;">2500</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:5px;">Total</td>
+                                        <td style="padding:5px;">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:5px;">Late Fee Fine</td>
+                                        <td style="padding:5px;">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:5px;">Net Fee</td>
+                                        <td style="padding:5px;">0</td>
+                                    </tr>
+                                </table>
+                            </span>
+                        </div>
+                    </div>
+                    <ol style="font-size:10px">
+                        <li style="margin-left:-40px">Timely payments keep cash flowing and ensure that</li>
+                        <li style="margin-left:-40px">Timely payments keep cash flowing and ensure that</li>
+                        <li style="margin-left:-40px">Timely payments keep cash flowing and ensure that</li>
+                        <li style="margin-left:-40px">Timely payments keep cash flowing and ensure that</li>
+                    </ol>
+                </t>
+            </t>
+        </template>
+        <!--CUSTOM SIZE-->
+
+        <!--REPORT-->
+        <record id="student_fee_voucher_temp" model="ir.actions.report">
+            <field name="name">Student Fee Voucher</field>
+            <field name="model">student.management</field>
+            <field name="report_type">qweb-html</field>
+            <field name="report_name">school_management.student_fee_voucher</field>
+            <field name="report_file">school_management.student_fee_voucher</field>
+            <field name="binding_model_id" ref="model_student_management"/>
+            <!--            <field name="paperformat_id" ref="school_management.paperformat_student_fee_voucher"/>-->
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

@@ -35,6 +35,7 @@
                                 <field name="StudentSemester_1"/>
                             </group>
                         </group>
+
                         <field name="StudentSubject">
                             <tree editable="bottom">
                                 <field name="SubjectCode"/>
@@ -45,6 +46,7 @@
                                 <field name="SubjectHourMarks"/>
                                 <field name="SubjectSessional"/>
                                 <field name="SubjectTotal"/>
+<!--                                <field name="SubjectFee"/>-->
                             </tree>
                         </field>
                     </sheet>

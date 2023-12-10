@@ -31,16 +31,25 @@ class StudentManagement(models.Model):
          ('9', '10')], 'Semester')
     SubjectLine_2 = fields.Many2one('subject.management', string="Subject")
 
-    SubjectLine_id = fields.Many2many('subject.management.lines', string="Subjects")
+    # SubjectLine_id = fields.Many2many('subject.management', string="Subjects")
     # computed field
-    StudentEnrolled = fields.Integer('Enrolled',compute='student_enrolled')
+    StudentEnrolled = fields.Integer('Enrolled Subjects',compute='student_enrolled')
+    # StudentHour = fields.Integer('Enrolled Hours',compute='enrolled_hours')
 
     # semester enrolled
 
+    @api.onchange('SubjectLine_2')
     def student_enrolled(self):
         for rec in self:
             temp = self.env['subject.management.lines'].search_count([('SubjectLine' ,'=', rec.SubjectLine_2.id)])
             rec.StudentEnrolled = temp
+
+    # @api.onchange('SubjectLine_2')
+    # def enrolled_hours(self):
+    #     for rec in self:
+    #         x = 0
+    #         temp = self.env['subject.management.lines'].search_count([('SubjectLine' ,'=', rec.SubjectLine_2.id)])
+    #         rec.StudentHour = temp
 
     def action_StudentEnrolled(self):
 
@@ -70,11 +79,11 @@ class StudentManagement(models.Model):
         year = present_date.strftime('%Y')
         self.StudentAge = int(year) - dob
 
-    @api.onchange('SubjectLine_2')
-    def update_subject_lines(self):
-        for rec in self:
-            related_subject_lines = self.env['subject.management.lines'].search([('SubjectLine', '=', rec.SubjectLine_2.id)]).ids
-            rec.SubjectLine_id = [(6, 0, related_subject_lines)]
+    # @api.onchange('SubjectLine_2')
+    # def update_subject_lines(self):
+    #     for rec in self:
+    #         related_subject_lines = self.env['subject.management.lines'].search([('SubjectLine', '=', rec.SubjectLine_2.id)]).ids
+    #         rec.SubjectLine_id = [(6, 0, related_subject_lines)]
 
     @api.constrains('StudentDateOfBirth')
     @api.onchange('StudentDateOfBirth')

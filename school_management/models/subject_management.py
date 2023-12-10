@@ -33,6 +33,7 @@ class SubjectManagementLines(models.Model):
     SubjectSessional = fields.Integer('Sessional Marks')
     SubjectHourMarks = fields.Integer('Subject Marks')
     SubjectTotal = fields.Integer('Subject Total')
+    # SubjectFee = fields.Integer('Subject Fee')
 
 
 
@@ -45,6 +46,9 @@ class SubjectManagementLines(models.Model):
         self.SubjectHourMarks = self.SubjectCreditHour * 18
         self.SubjectTotal = self.SubjectSessional + self.SubjectHourMarks
 
+    # @api.onchange('SubjectCreditHour')
+    # def subjfee(self):
+    #     self.SubjectFee = self.SubjectCreditHour * 2000
 
 
 
