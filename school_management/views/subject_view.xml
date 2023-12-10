@@ -1,0 +1,66 @@
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="subject_management_tree">
+            <field name="name">Subject Data Management</field>
+            <field name="model">subject.management</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="StudentCourse_id"/>
+                    <field name="StudentYear_1"/>
+                    <field name="StudentSemester_1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="subject_management_form">
+            <field name="name">Subject Data Management</field>
+            <field name="model">subject.management</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="RecName"/>
+                            </group>
+                        </group>
+                        <group col="3">
+                            <group>
+                                <field name="StudentCourse_id"/>
+                            </group>
+                            <group>
+                                <field name="StudentYear_1"/>
+                            </group>
+                            <group>
+                                <field name="StudentSemester_1"/>
+                            </group>
+                        </group>
+                        <field name="StudentSubject">
+                            <tree editable="bottom">
+                                <field name="SubjectCode"/>
+                                <field name="SubjectName"/>
+                                <field name="SubjectCreditHour"/>
+                                <field name="SubjectTheory"/>
+                                <field name="SubjectPractical"/>
+                                <field name="SubjectHourMarks"/>
+                                <field name="SubjectSessional"/>
+                                <field name="SubjectTotal"/>
+                            </tree>
+                        </field>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+
+        <record model="ir.actions.act_window" id="subject_management_action">
+            <field name="name">Subject DataBase</field>
+            <field name="res_model">subject.management</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Subjects" id="subejct_menu" parent="school_management.menu_root"
+                  action="subject_management_action"/>
+    </data>
+</odoo>

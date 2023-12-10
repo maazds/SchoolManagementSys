@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_school_management,school_management,model_school_management,,1,1,1,1
+access_teacher_management,teacher_management,model_teacher_management,,1,1,1,1
+access_student_management,student_management,model_student_management,,1,1,1,1
+access_course_management,course_management,model_course_management,,1,1,1,1
+access_room_management,room_management,model_room_management,,1,1,1,1
+access_subject_management,subject_management,model_subject_management,,1,1,1,1
+access_subject_management_lines,subject_management_lines,model_subject_management_lines,,1,1,1,1
+

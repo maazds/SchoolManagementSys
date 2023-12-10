@@ -1,0 +1,167 @@
+<odoo>
+    <data>
+        <!--FILTER,GROUP BY                                                                                                                                                         AND SEARCH VIEW&ndash;&gt;-->
+        <record model="ir.ui.view" id="student_management_tree_filter">
+            <field name="name">Student Data Management</field>
+            <field name="model">student.management</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="StudentTitle" string="Search Student"
+                           filter_domain="['|',('StudentTitle','ilike', self),('StudentFirstName','ilike',self)]"/>
+                    <field name="StudentFirstName"/>
+                    <field name="StudentLastName"/>
+                    <filter name="filter_male" string="Male" domain="[('StudentGender','=','0')]"/>
+                    <filter name="filter_female" string="Female" domain="[('StudentGender','=','1')]"/>
+                    <filter name="filter_others" string="Others" domain="[('StudentGender','=','2')]"/>
+                    <group expand="0" string="Group By">
+                        <filter name="group_by" string="Gender" context="{'group_by':'StudentGender'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!--TREE VIEW FOR DATA-->
+        <record model="ir.ui.view" id="student_management_tree">
+            <field name="name">Student Data Management</field>
+            <field name="model">student.management</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="StudentTitle"/>
+                    <field name="StudentFirstName"/>
+                    <field name="StudentLastName"/>
+                    <field name="StudentCountry"/>
+                    <field name="StudentGender"/>
+                    <field name="StudentAge"/>
+                    <field name="StudentCourse_ID"/>
+                </tree>
+            </field>
+        </record>
+        <!--FORM VIEW FOR INFO-->
+        <record model="ir.ui.view" id="student_management_form">
+            <field name="name">Student Management</field>
+            <field name="model">student.management</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_StudentEnrolled" string="Enrolled" type="object" class="oe_stat_button"
+                                    icon="fa-calendar">
+                            </button>
+                            <button name="action_StudentEnrolled" string="Enrolled" type="object" class="oe_stat_button"
+                                    icon="fa-calendar">
+                            </button>
+                        </div>
+                        <field name="StudentImage" widget="image" class="oe_avatar"/>
+                        <div class="oe_title">
+                            <label for="StudentID"/>
+                            <h2>
+                                <field name="StudentID" default_focus="1"/>
+                            </h2>
+                            <h2>
+                                <field name="StudentID" invisible="1"/>
+                            </h2>
+                        </div>
+
+                        <group string="Student Details" style="font-size:15px" col="3">
+                            <group>
+                                <field name="StudentTitle"/>
+                                <field name="StudentDateOfBirth"/>
+                            </group>
+                            <group>
+                                <field name="StudentFirstName"/>
+                                <field name="StudentAge"/>
+                            </group>
+                            <group>
+                                <field name="StudentLastName"/>
+                                <field name="StudentGender"/>
+                            </group>
+                        </group>
+                        <group string="Student Address" style="font-size:15px" col="3">
+                            <group>
+                                <field name="StudentCountry"/>
+                                <field name="StudentZipCode"/>
+                            </group>
+                            <group>
+                                <field name="StudentState"/>
+                                <field name="StudentStreetAddress"/>
+                            </group>
+                            <group>
+                                <field name="StudentCity"/>
+                            </group>
+                        </group>
+                        <group string="Contact Details" style="font-size:15px" col="2">
+                            <group>
+                                <field name="StudentPhoneNumber"/>
+                            </group>
+                            <group>
+                                <field name="StudentEmail"/>
+                                <field name="StudentEnrolled"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Academic Information">
+                                <group col="3">
+                                    <group>
+                                        <field name="StudentCourse_ID"/>
+                                    </group>
+                                    <group>
+                                        <field name="StudentYear"/>
+                                    </group>
+                                    <group>
+                                        <field name="StudentSemester"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <field name="SubjectLine_2"/>
+                                    <field name="SubjectLine_id" readonly="1"/>
+                                </group>
+                                <group>
+                                    <!--                                    <field name="SubjectLine_3"/>-->
+                                </group>
+                            </page>
+                            <page string="Violations">
+
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--ACTION-->
+        <record model="ir.actions.act_window" id="student_management_action">
+            <field name="name">Student DataBase</field>
+            <field name="res_model">student.management</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+
+
+
+        <record model="ir.actions.server" id="student_management_server_action_country">
+            <field name="name">Set Country</field>
+            <field name="model_id" ref="school_management.model_student_management"/>
+            <field name="binding_model_id" ref="school_management.model_student_management"/>
+            <field name="state">code</field>
+            <field name="type">ir.actions.server</field>
+            <field name="code">
+                for rec in records:
+                rec.change_country()
+                rec.change_state()
+            </field>
+        </record>
+        <record model="ir.actions.server" id="student_management_server_action_dob">
+            <field name="name">SORT BY AGE</field>
+            <field name="model_id" ref="school_management.model_student_management"/>
+            <field name="binding_model_id" ref="school_management.model_student_management"/>
+            <field name="state">code</field>
+            <field name="type">ir.actions.server</field>
+            <field name="code">
+                for rec in records:
+                rec.sort_age()
+            </field>
+        </record>
+        <!--MENU-->
+        <menuitem name="Student" id="student_menu" parent="school_management.menu_root"
+                  action="student_management_action"/>
+    </data>
+</odoo>
