@@ -1,0 +1,39 @@
+<odoo>
+    <data>
+         <record model="ir.ui.view" id="student_fee_tree">
+            <field name="name">Fee Tree</field>
+            <field name="model">student.fee</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="course"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="student_fee_form">
+            <field name="name">Fee Form</field>
+            <field name="model">student.fee</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="course"/>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_student_fee">
+            <field name="name">Student Fee</field>
+            <field name="res_model">student.fee</field>
+            <field name="view_mode">form,tree</field>
+            <field name="target"></field>
+        </record>
+
+        <menuitem name="Fee" id="fee_menu" parent="school_management.menu_root"
+                  action="action_student_fee"/>
+
+    </data>
+</odoo>

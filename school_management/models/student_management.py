@@ -30,13 +30,23 @@ class StudentManagement(models.Model):
         [('0', '1'), ('1', '2'), ('2', '3'), ('3', '4'), ('4', '5'), ('5', '6'), ('6', '7'), ('7', '8'), ('8', '9'),
          ('9', '10')], 'Semester')
     SubjectLine_2 = fields.Many2one('subject.management', string="Subject")
-
-    # SubjectLine_id = fields.Many2many('subject.management', string="Subjects")
-    # computed field
+    Leave_ids = fields.One2many('student.leave','StudentLeave_id',string='Leave')
     StudentEnrolled = fields.Integer('Enrolled Subjects',compute='student_enrolled')
-    # StudentHour = fields.Integer('Enrolled Hours',compute='enrolled_hours')
+    isuued_book_ids = fields.One2many('library.management.lines','library_book_id',string="Issued Books")
 
-    # semester enrolled
+
+    def create_leave(self):
+        wizard = self.env['student.leave.wizard'].create({
+            'StudentLeave_id':self.id
+        })
+        return {
+            'name': _('Student Leave'),
+            'type': 'ir.actions.act_window',
+            'res_model': 'student.leave.wizard',
+            'view_mode': 'form',
+            'res_id': wizard.id,
+            'target': 'new'
+        }
 
     @api.onchange('SubjectLine_2')
     def student_enrolled(self):
@@ -92,4 +102,18 @@ class StudentManagement(models.Model):
             raise ValidationError('Date of Birth Should be in past')
 
 
+class StudentLeaveLines(models.Model):
+    _name = 'student.leave'
+    _description = 'Student Leave Lines'
 
+    StudentLeave_id = fields.Many2one('student.management', string = 'Student ID')
+    LeaveDate = fields.Date('Date')
+    LeaveReason = fields.Text('Reason')
+
+class LibraryManagementLines(models.Model):
+    _name = 'library.management.lines'
+    _description = 'Library Management Lines'
+
+    library_book_id = fields.Many2one('student.management',string="Library Books Ids")
+    student_id = fields.Char('Student_id')
+    issued_books = fields.Char('Issued Books')

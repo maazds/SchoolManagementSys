@@ -25,6 +25,8 @@
     # always loaded
     'data': [
         'security/ir.model.access.csv',
+        'wizards/student_leave_view.xml',
+        'wizards/library_book.xml',
         'views/views.xml',
         'views/templates.xml',
         'views/teacher_view.xml',
@@ -34,10 +36,10 @@
         'views/course_view.xml',
         'views/subject_view.xml',
         'views/room_view.xml',
-        'views/student_fee.xml'
-
-
-
+        'views/student_fee.xml',
+        'views/fee_view.xml',
+        'views/library.xml',
+        'views/library_issue_books.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

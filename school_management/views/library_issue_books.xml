@@ -1,0 +1,47 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="library_books_issue">
+            <field name="name">Issue Books</field>
+            <field name="model">library.book.management</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="borrower_id"/>
+                    <field name="book_id"/>
+                    <field name="rent_date"/>
+                    <field name="return_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="library_books_issue_form">
+            <field name="name">Issue Book</field>
+            <field name="model">library.book.management</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="book_id"/>
+                                <field name="borrower_id"/>
+                            </group>
+                            <group>
+                                <field name="rent_date"/>
+                                <field name="return_date"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="library_books_action">
+            <field name="name">Books Issue</field>
+            <field name="res_model">library.book.management</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <!--MENU-->
+        <menuitem name="Issue Books" id="books_menu" parent="library_menu"
+                  action="library_books_action"/>
+
+    </data>
+</odoo>

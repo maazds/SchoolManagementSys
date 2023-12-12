@@ -35,11 +35,6 @@ class SubjectManagementLines(models.Model):
     SubjectTotal = fields.Integer('Subject Total')
     # SubjectFee = fields.Integer('Subject Fee')
 
-
-
-
-
-
     @api.onchange('SubjectCreditHour')
     def sessional(self):
         self.SubjectSessional = self.SubjectCreditHour * 2

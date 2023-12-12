@@ -4,6 +4,12 @@ access_teacher_management,teacher_management,model_teacher_management,,1,1,1,1
 access_student_management,student_management,model_student_management,,1,1,1,1
 access_course_management,course_management,model_course_management,,1,1,1,1
 access_room_management,room_management,model_room_management,,1,1,1,1
+access_student_fee,student_fee,model_student_fee,,1,1,1,1
 access_subject_management,subject_management,model_subject_management,,1,1,1,1
 access_subject_management_lines,subject_management_lines,model_subject_management_lines,,1,1,1,1
+access_student_leave_wizard,student_leave_wizard,model_student_leave_wizard,,1,1,1,1
+access_library_management,library_management,model_library_management,,1,1,1,1
+access_library_management_lines,library_management_lines,model_library_management_lines,,1,1,1,1
+access_library_book_wizard,library_book_wizard,model_library_book_wizard,,1,1,1,1
+access_library_book_management,library_book_management,model_library_book_management,,1,1,1,1
 
