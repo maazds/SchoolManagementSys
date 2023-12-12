@@ -5,6 +5,6 @@ class StudentLeaveWizard(models.TransientModel):
     _description = 'Student Leave Wizard'
 
     student_id = fields.Many2one('student.management',string="Student ID",readonly=True)
-    date = fields.Date('Date')
-    reason = fields.Text('Reason')
+    leave_date = fields.Date('Date')
+    leave_reason = fields.Text('Reason')
 

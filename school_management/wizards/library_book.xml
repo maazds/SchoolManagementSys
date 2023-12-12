@@ -10,8 +10,10 @@
                             <group>
                                 <field name='student_id'/>
                             </group>
-                             <field name='issue_date'/>
-                             <field name='to_date'/>
+                            <group>
+                                <field name='issue_date'/>
+                                <field name='to_date'/>
+                            </group>
                         </group>
                         <group>
                             <field name='books_ids'/>

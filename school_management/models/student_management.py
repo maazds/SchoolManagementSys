@@ -4,6 +4,7 @@ from odoo.exceptions import ValidationError
 
 class StudentManagement(models.Model):
     _name = 'student.management'
+    _inherit = ['mail.thread','mail.activity.mixin']
     _description = 'Student Data Collection'
     _rec_name = 'StudentFirstName'
 
@@ -29,24 +30,17 @@ class StudentManagement(models.Model):
     StudentSemester = fields.Selection(
         [('0', '1'), ('1', '2'), ('2', '3'), ('3', '4'), ('4', '5'), ('5', '6'), ('6', '7'), ('7', '8'), ('8', '9'),
          ('9', '10')], 'Semester')
-    SubjectLine_2 = fields.Many2one('subject.management', string="Subject")
-    Leave_ids = fields.One2many('student.leave','StudentLeave_id',string='Leave')
+    SubjectLine_2 = fields.Many2one('subject.management', string="Subject",tracking=True)
     StudentEnrolled = fields.Integer('Enrolled Subjects',compute='student_enrolled')
-    isuued_book_ids = fields.One2many('library.management.lines','library_book_id',string="Issued Books")
+    StudentLeaveDate = fields.Date('Leave Date')
+    StudentLeaveReason = fields.Text('Leave Reason')
+
 
 
     def create_leave(self):
-        wizard = self.env['student.leave.wizard'].create({
-            'StudentLeave_id':self.id
-        })
-        return {
-            'name': _('Student Leave'),
-            'type': 'ir.actions.act_window',
-            'res_model': 'student.leave.wizard',
-            'view_mode': 'form',
-            'res_id': wizard.id,
-            'target': 'new'
-        }
+        pass
+        # leave_id = self.env['student.leave.wizard']
+
 
     @api.onchange('SubjectLine_2')
     def student_enrolled(self):
@@ -110,10 +104,3 @@ class StudentLeaveLines(models.Model):
     LeaveDate = fields.Date('Date')
     LeaveReason = fields.Text('Reason')
 
-class LibraryManagementLines(models.Model):
-    _name = 'library.management.lines'
-    _description = 'Library Management Lines'
-
-    library_book_id = fields.Many2one('student.management',string="Library Books Ids")
-    student_id = fields.Char('Student_id')
-    issued_books = fields.Char('Issued Books')

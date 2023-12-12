@@ -9,7 +9,6 @@ access_subject_management,subject_management,model_subject_management,,1,1,1,1
 access_subject_management_lines,subject_management_lines,model_subject_management_lines,,1,1,1,1
 access_student_leave_wizard,student_leave_wizard,model_student_leave_wizard,,1,1,1,1
 access_library_management,library_management,model_library_management,,1,1,1,1
-access_library_management_lines,library_management_lines,model_library_management_lines,,1,1,1,1
 access_library_book_wizard,library_book_wizard,model_library_book_wizard,,1,1,1,1
 access_library_book_management,library_book_management,model_library_book_management,,1,1,1,1
 

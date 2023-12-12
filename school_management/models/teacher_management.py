@@ -5,6 +5,7 @@ from datetime import datetime
 
 class TeacherManagement(models.Model):
     _name = 'teacher.management'
+    _inherit = ['mail.thread','mail.activity.mixin']
     _description = 'Management of Teachers'
     _rec_name = 'TeacherFirstName'
 
@@ -22,7 +23,7 @@ class TeacherManagement(models.Model):
     # TeacherZipCode = fields.Integer('Zip Code')
     TeacherZipCode = fields.Char('Zip Code')
     TeacherStreetAddress = fields.Char('Street Address',required=True)
-    TeacherPhoneNumber = fields.Char('Phone Number')
+    TeacherPhoneNumber = fields.Char('Phone Number',tracking=True)
     TeacherEmail = fields.Char('Email')
     TeacherImage = fields.Binary('Image')
     TeacherLecture = fields.Many2many('room.management',string="Lecture")

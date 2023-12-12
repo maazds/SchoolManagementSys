@@ -1,0 +1,15 @@
+<odoo>
+    <data>
+        ACTION
+        <record model="ir.actions.act_window" id="male_student_management_action">
+            <field name="name">Male Student DataBase</field>
+            <field name="res_model">student.management</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'default_StudentGender':'0'}</field>
+            <field name="domain">[('StudentGender','=','0')]</field>
+        </record>
+        <!--MENU-->
+        <menuitem name="Male Students" id="male_student_menu" parent="student_main_menu"
+                  action="male_student_management_action"/>
+    </data>
+</odoo>

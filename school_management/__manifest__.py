@@ -20,7 +20,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base',],
+    'depends': ['base','mail'],
 
     # always loaded
     'data': [
@@ -40,6 +40,8 @@
         'views/fee_view.xml',
         'views/library.xml',
         'views/library_issue_books.xml',
+        'views/male_student.xml',
+        'views/female_students.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
