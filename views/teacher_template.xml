@@ -1,0 +1,84 @@
+<odoo>
+    <data>
+        <template id="teacher_id_card">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <div style="background:green;border-bottom:10px solid yellow;margin-left:-8px;margin-right:-8px;text-align:center">
+                        <h2 style="color:white;padding:10px 10px 0px 10px">
+                            <b>XYZ School</b>
+                        </h2>
+                    </div>
+                    <div class="page"
+                         style="font-family:Cursive;border-left:10px solid yellow;border-right:10px solid yellow;border-bottom:38px solid green;padding:0px 30px 60px 30px;margin-left:-7px;margin-right:-7px;margin-bottom:-7px">
+                        <div>
+                            <div>
+                                <img style="width:150px;height:150px;border-radius:50%;margin-left:60px;margin-top:5px"
+                                     t-att-src="image_data_uri(o.TeacherImage)"/>
+                            </div>
+                            <span>
+                                <b>Name :</b>
+                                <t t-esc="dict(docs.fields_get(allfields=['TeacherTitle'])['TeacherTitle']['selection'])[docs.TeacherTitle]"/>
+                                <t t-esc="o.TeacherFirstName"/>
+                                <t t-esc="o.TeacherLastName"/>
+                            </span>
+                            <br/>
+                            <span>
+                                <b>DOB :</b>
+                                <t t-esc="o.TeacherDateOfBirth"/>
+                            </span>
+                            <br/>
+                            <span>
+                                <b>Country :</b>
+                                <t t-esc="o.TeacherCountry"/>
+                            </span>
+                            <br/>
+                            <span>
+                                <b>Gender :</b>
+                                <t t-esc="dict(docs.fields_get(allfields=['TeacherGender'])['TeacherGender']['selection'])[docs.TeacherGender]"/>
+                            </span>
+                            <br/>
+                            <span>
+                                <b>Mobile No. :</b>
+                                <t t-esc="o.TeacherPhoneNumber"/>
+                            </span>
+                            <br/>
+                            <span>
+                                <b>Email :</b>
+                                <t t-esc="o.TeacherEmail"/>
+                            </span>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+        <!--CUSTOM SIZE-->
+        <record id="paperformat_teacherid" model="report.paperformat">
+            <field name="name">Teacher ID Card</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">98</field>
+            <field name="page_width">67</field>
+            <field name="orientation"></field>
+            <field name="margin_top">0</field>
+            <field name="margin_bottom">0</field>
+            <field name="margin_left">0</field>
+            <field name="margin_right">0</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">3</field>
+            <field name="dpi">100</field>
+            <!--            <field name="padding_left">0</field>-->
+            <!--            <field name="padding_right">0</field>-->
+        </record>
+        <!--REPORT-->
+        <record id="teacher_card" model="ir.actions.report">
+            <field name="name">Teacher ID Card</field>
+            <field name="model">teacher.management</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">school_management.teacher_id_card</field>
+            <field name="report_file">school_management.teacher_id_card</field>
+            <field name="binding_model_id" ref="model_teacher_management"/>
+            <field name="paperformat_id" ref="school_management.paperformat_teacherid"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,59 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="room_management_tree">
+            <field name="name">Room Data Management</field>
+            <field name="model">room.management</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="RoomID"/>
+                    <field name="RoomDay"/>
+                    <field name="RoomSemester"/>
+                    <field name="RoomCourseCode"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="room_management_form">
+            <field name="name">Room Data Management</field>
+            <field name="model">room.management</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group col="3">
+                            <group>
+                                <field name="RoomID"/>
+                            </group>
+                            <group>
+                                <field name="RoomDay"/>
+                            </group>
+                            <group>
+                                <field name="RoomCourse"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                 <field name="RoomSemester"/>
+                                <field name="RoomInTime"/>
+                            </group>
+                            <group>
+                               <field name="RoomCourseCode"/>
+                                <field name="RoomOutTime"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="room_management_action">
+            <field name="name">Room DataBase</field>
+            <field name="res_model">room.management</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Rooms" id="room_menu" parent="school_management_menu_root"
+                  action="room_management_action"/>
+
+
+    </data>
+</odoo>

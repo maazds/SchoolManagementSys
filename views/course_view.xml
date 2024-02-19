@@ -1,0 +1,46 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="course_management_tree">
+            <field name="name">Course Data Management</field>
+            <field name="model">course.management</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="CourseID"/>
+                    <field name="CourseName"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="course_management_form">
+            <field name="name">Course Data Management</field>
+            <field name="model">course.management</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group string="Enter Course Details" col="3">
+                            <group>
+                                <field name="CourseID"/>
+                            </group>
+                            <group>
+                                <field name="CourseName"/>
+                            </group>
+                            <group>
+                                <field name="CourseDesc"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--ACTION-->
+        <record model="ir.actions.act_window" id="course_management_action">
+            <field name="name">Course DataBase</field>
+            <field name="res_model">course.management</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <!--MENU-->
+        <menuitem name="Courses" id="Course_menu" parent="school_management_menu_root"
+                  action="course_management_action"/>
+
+    </data>
+</odoo>

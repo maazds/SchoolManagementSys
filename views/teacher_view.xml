@@ -1,0 +1,112 @@
+<odoo>
+    <data>
+        <!--FILTER AND SEARCH VIEW-->
+        <record model="ir.ui.view" id="teacher_management_tree_filter">
+            <field name="name">Teacher Data Management</field>
+            <field name="model">teacher.management</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="TeacherTitle" string="Search Teacher"/>
+                    <!--filter_domain="['|',('TeacherTitle','ilike', self),('TeacherFirstName','ilike',self)]"/>-->
+                    <field name="TeacherFirstName"/>
+                    <field name="TeacherLastName"/>
+                    <filter name="filter_male" string="Male" domain="[('TeacherGender','=','0')]"/>
+                    <filter name="filter_female" string="Female" domain="[('TeacherGender','=','1')]"/>
+                    <filter name="filter_others" string="Others" domain="[('TeacherGender','=','2')]"/>
+                </search>
+            </field>
+        </record>
+        <!--TREE VIEW FOR DATA-->
+        <record model="ir.ui.view" id="teacher_management_tree">
+            <field name="name">Teacher Data Management</field>
+            <field name="model">teacher.management</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="TeacherTitle"/>
+                    <field name="TeacherFirstName"/>
+                    <field name="TeacherLastName"/>
+                    <field name="TeacherCountry"/>
+                    <field name="TeacherGender"/>
+                    <field name="TeacherAge"/>
+                </tree>
+            </field>
+        </record>
+        <!--FORM VIEW FOR INFO-->
+        <record model="ir.ui.view" id="teacher_management_form">
+            <field name="name">Teacher Management</field>
+            <field name="model">teacher.management</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_right">
+                            <field name="TeacherImage" widget="image" class="oe_avatar"/>
+                        </div>
+                        <group>
+                            <div class="oe_title">
+                                <label for="TeacherID"/>
+                                <h2>
+                                    <field name="TeacherID" class="oe_inline"/>
+                                </h2>
+                                <h2>
+                                    <field name="TeacherID" invisible="1"/>
+                                </h2>
+
+                            </div>
+                        </group>
+
+                        <group string="Teacher Details" style="font-size:15px" col="3">
+                            <group>
+                                <field name="TeacherTitle"/>
+                                <field name="TeacherDateOfBirth"/>
+                            </group>
+                            <group>
+                                <field name="TeacherFirstName"/>
+                                <field name="TeacherAge"/>
+                            </group>
+                            <group>
+                                <field name="TeacherLastName"/>
+                                <field name="TeacherGender"/>
+                            </group>
+                        </group>
+                        <group string="Teacher Address" style="font-size:15px" col="3">
+                            <group>
+                                <field name="TeacherCountry"/>
+                                <field name="TeacherZipCode"/>
+                            </group>
+                            <group>
+                                <field name="TeacherState"/>
+                                <field name="TeacherStreetAddress"/>
+                            </group>
+                            <group>
+                                <field name="TeacherCity"/>
+                            </group>
+                        </group>
+                        <group string="Contact Details" style="font-size:15px" col="2">
+                            <group>
+                                <field name="TeacherPhoneNumber"/>
+                            </group>
+                            <group>
+                                <field name="TeacherEmail"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Lectures">
+                                <field name="TeacherLecture"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--ACTION-->
+        <record model="ir.actions.act_window" id="teacher_management_action">
+            <field name="name">Teacher DataBase</field>
+            <field name="res_model">teacher.management</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <!--MENU-->
+        <menuitem name="Teacher" id="teacher_menu" parent="school_management_menu_root"
+                  action="teacher_management_action"/>
+
+    </data>
+</odoo>
